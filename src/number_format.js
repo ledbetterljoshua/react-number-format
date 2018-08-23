@@ -820,25 +820,10 @@ class NumberFormat extends React.Component {
       onBlur: this.onBlur
     })
 
-    if( displayType === 'text'){
-      return renderText ? (renderText(value) || null) : <span {...otherProps} ref={getInputRef}>{value}</span>;
-    }
-
-    else if (customInput) {
-      const CustomInput = customInput;
-      return (
-        <CustomInput
-          {...inputProps}
-        />
-      )
-    }
-
-    return (
-      <input
-        {...inputProps}
-        ref = {getInputRef}
-      />
-    )
+    return this.props.children({
+      props: inputProps, 
+      onChange: this.onChange
+    })
   }
 }
 
